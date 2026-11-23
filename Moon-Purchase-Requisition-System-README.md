@@ -11,8 +11,18 @@ The application brings requisition information and its related line items togeth
 ---
 
 ## App Gallery
+<img width="452" height="211" alt="image" src="https://github.com/user-attachments/assets/ead5bfff-110b-42fd-9d6f-f324a82a8d51" />
+<img width="452" height="224" alt="image" src="https://github.com/user-attachments/assets/03d163a4-a5e5-471d-bf4d-bc5f9928e4f6" />
+<img width="452" height="215" alt="image" src="https://github.com/user-attachments/assets/1cb345aa-3349-4b1a-b4b1-89bc7094f510" />
+<img width="452" height="219" alt="image" src="https://github.com/user-attachments/assets/2509cc17-dba6-4679-959c-36441c270941" />
+<img width="452" height="205" alt="image" src="https://github.com/user-attachments/assets/09ceb6fa-3e72-4173-8dc5-c181e1159f12" />
+<img width="452" height="245" alt="image" src="https://github.com/user-attachments/assets/98ce54b0-61d4-49d4-9a5d-d06e17e686f5" />
+<img width="452" height="136" alt="image" src="https://github.com/user-attachments/assets/795fd9e3-3c91-4342-ab38-8638c22d9082" />
+<img width="452" height="153" alt="image" src="https://github.com/user-attachments/assets/78ec827e-082a-4671-b901-84b78852c893" />
+<img width="452" height="151" alt="image" src="https://github.com/user-attachments/assets/1efd45fb-5091-4a5c-8a36-59a17b72a90f" />
+<img width="452" height="216" alt="image" src="https://github.com/user-attachments/assets/71bd8100-e432-463a-afab-5f91ac6c38f0" />
+<img width="452" height="212" alt="image" src="https://github.com/user-attachments/assets/628a4fd2-f758-403f-883e-b2f1a17a0293" />
 
-Add sanitized screenshots from your implementation to the folders below. The paths are suggested placeholders and should be updated to match the images committed to this repository.
 
 | Experience | What it should demonstrate |
 |---|---|
