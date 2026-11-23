@@ -6,7 +6,7 @@ Moon Purchase Requisition System is a Microsoft Power Platform solution concept 
 
 The application brings requisition information and its related line items together in one workspace. Dataverse relationships, quick-create forms, formula columns and rollup columns support a streamlined data-entry experience and clearer visibility of request totals.
 
-> **Implementation scope:** The source tutorial covers the Dataverse data model, table configuration, forms, views, calculated fields, rollup configuration, Model-Driven App creation and basic end-to-end testing. A Power Automate approval engine is discussed as a possible next phase, but its flow implementation is not demonstrated in the supplied tutorial transcript. It is therefore documented below as a planned enhancement, not as a completed feature.
+> **Implementation scope:** The source app covers the Dataverse data model, table configuration, forms, views, calculated fields, rollup configuration, Model-Driven App creation and basic end-to-end testing. A Power Automate approval engine is discussed as a possible next phase, but its flow implementation is not demonstrated in the supplied app transcript. It is therefore documented below as a planned enhancement, not as a completed feature.
 
 ---
 
@@ -25,11 +25,6 @@ Add sanitized screenshots from your implementation to the folders below. The pat
 | Supplier management | Supplier contact and address information |
 | Calculated values | Item total and requisition-level rollup amount |
 
-Example:
-
-```md
-![Moon Purchase Requisition System](Screenshots/01-App-Overview/model-driven-app.png)
-```
 
 ---
 
@@ -45,7 +40,7 @@ Example:
 | Workflow platform | Power Automate – planned approval-engine extension |
 | Core data entities | Departments, Suppliers, Requisitions, Requisition Items and Approvers |
 | User experience | Dataverse model-driven forms, views, subgrids and quick-create forms |
-| Project status | Core requisition application demonstrated; approval automation is outside the supplied tutorial scope |
+| Project status | Core requisition application demonstrated; approval automation is outside the supplied app scope |
 
 ### What the application does
 
@@ -80,7 +75,7 @@ The solution is designed to:
 
 A manual purchase requisition process can depend on paper forms, physical hand-offs and individual approvers being available. This can make it difficult for requesters to know where a request stands. Paperwork can be misplaced, and a request may remain pending when an approver is unavailable.
 
-The tutorial describes a small organization seeking a more streamlined way to manage purchase requests and keep track of requisition information.
+The app describes a small organization seeking a more streamlined way to manage purchase requests and keep track of requisition information.
 
 ### Why an application is needed
 
@@ -134,7 +129,7 @@ The supplier form and view are configured to expose the supplier information req
 
 The Requisitions table is the central entity of the application. It stores the overall purchase request and references the relevant department and supplier.
 
-The tutorial identifies fields including:
+The app identifies fields including:
 
 - Requisition Number – primary name column.
 - Title.
@@ -180,7 +175,7 @@ The line-item total is calculated using a Dataverse formula column.
 Total Price = Quantity × Unit Price
 ```
 
-The tutorial notes a limitation encountered when using currency columns directly in the formula. The demonstrated workaround is to use decimal columns for the unit price and calculated total.
+The app notes a limitation encountered when using currency columns directly in the formula. The demonstrated workaround is to use decimal columns for the unit price and calculated total.
 
 The decimal unit-price field can be presented to the user with a friendly display name, while the calculated total is system-derived and does not need to be manually entered.
 
@@ -188,7 +183,7 @@ The decimal unit-price field can be presented to the user with a friendly displa
 
 A requisition can contain several line items, so the application also needs to aggregate their calculated totals.
 
-The tutorial configures a Dataverse rollup column on the Requisitions table:
+The app configures a Dataverse rollup column on the Requisitions table:
 
 - Column: Total Amount Calculated.
 - Data type: Currency.
@@ -196,7 +191,7 @@ The tutorial configures a Dataverse rollup column on the Requisitions table:
 - Related table: Requisition Items.
 - Aggregation: Sum of the child line-item total-price values.
 
-The rollup brings the combined value of the related line items onto the parent requisition record. The tutorial demonstrates manually triggering **Recalculate** from the rollup column during testing.
+The rollup brings the combined value of the related line items onto the parent requisition record. The app demonstrates manually triggering **Recalculate** from the rollup column during testing.
 
 > Dataverse rollup calculations are system-managed and may not update immediately after every child-record change. Validate the recalculation behavior and timing in the target environment.
 
@@ -211,7 +206,7 @@ The demonstrated design includes:
 - User row / user reference.
 - Approval level.
 
-The tutorial describes this table as independent of the other tables and intended for use by the Power Automate notification engine.
+The app describes this table as independent of the other tables and intended for use by the Power Automate notification engine.
 
 **Scope note:** The transcript does not demonstrate the completed approval flow, approval routing, escalation, approval outcomes or notifications. These should be added to the documentation only after the corresponding Power Automate flows are implemented and verified.
 
@@ -225,13 +220,13 @@ The demonstrated navigation includes:
 - Suppliers.
 - Departments.
 
-The Requisition Items table is available through the related line-item subgrid on a requisition record, so it is removed from the main navigation. The tutorial also removes the technical `RQ` prefix from the displayed view names and places Requisitions first in the navigation order.
+The Requisition Items table is available through the related line-item subgrid on a requisition record, so it is removed from the main navigation. The app also removes the technical `RQ` prefix from the displayed view names and places Requisitions first in the navigation order.
 
 ---
 
 ## 04. Screenshots & User Interface
 
-Use this section to show the actual screens from your Moon-branded implementation. The tutorial transcript describes the following experiences, but does not provide image files for this repository.
+Use this section to show the actual screens from your Moon-branded implementation. The app transcript describes the following experiences, but does not provide image files for this repository.
 
 | Screen / experience | What it demonstrates | Suggested image |
 |---|---|---|
@@ -289,7 +284,7 @@ Before publishing, sanitize screenshots. Remove or mask real names, email addres
 | Data presentation | Public views and subgrids | Displays record lists and related line items |
 | Business logic | Dataverse formula column | Calculates line-item total from quantity and unit price |
 | Aggregation | Dataverse rollup column | Sums child line-item totals onto the parent requisition |
-| Workflow extension | Microsoft Power Automate | Intended approval and notification engine; not implemented in the supplied tutorial scope |
+| Workflow extension | Microsoft Power Automate | Intended approval and notification engine; not implemented in the supplied app scope |
 | Solution management | Power Platform Solutions | Groups application components for solution-based development and deployment |
 
 ### High-level architecture
@@ -314,7 +309,7 @@ flowchart TD
     REQ -. "Potential approval trigger" .-> FLOW
 ```
 
-> This is a logical architecture based on the supplied tutorial transcript. It represents the demonstrated Dataverse data model and app configuration. The Power Automate approval engine is shown as a future extension, not as a verified deployed integration.
+> This is a logical architecture based on the supplied app transcript. It represents the demonstrated Dataverse data model and app configuration. The Power Automate approval engine is shown as a future extension, not as a verified deployed integration.
 
 ### Dataverse data model
 
@@ -328,7 +323,7 @@ The solution uses five core tables.
 | RQ Requisition Items | Item Name | Requisition, Description, Quantity, Unit Price, Total Price |
 | RQ Approvers | Approver Name | Email Address, User Reference, Approval Level |
 
-The `RQ` prefix is used in the tutorial to group the custom tables. The prefix can be configured through the solution publisher.
+The `RQ` prefix is used in the app to group the custom tables. The prefix can be configured through the solution publisher.
 
 ### Table relationships
 
@@ -347,7 +342,7 @@ The `RQ` prefix is used in the tutorial to group the custom tables. The prefix c
 Quantity × Unit Price = Total Price
 ```
 
-The tutorial uses decimal data types for the unit price and formula result to work around the currency-field formula limitation encountered during the build.
+The app uses decimal data types for the unit price and formula result to work around the currency-field formula limitation encountered during the build.
 
 **Requisition rollup**
 
@@ -364,13 +359,13 @@ The rollup is configured against the related Requisition Items table and sums th
 
 ### 6.1 Solution-based development
 
-The tutorial begins by creating a Dataverse solution and selecting a publisher. The custom tables and Model-Driven App are created within this solution so the application components are grouped together.
+The app begins by creating a Dataverse solution and selecting a publisher. The custom tables and Model-Driven App are created within this solution so the application components are grouped together.
 
 The `RQ` table prefix is used to identify the custom requisition entities.
 
 ### 6.2 Table creation
 
-The tutorial demonstrates two approaches to creating Dataverse tables:
+The app demonstrates two approaches to creating Dataverse tables:
 
 1. **Table advanced properties:** Used to configure the Departments and Suppliers tables, including their primary columns and additional fields.
 2. **Describe new tables / Copilot-assisted generation:** Used to generate the Requisitions and Requisition Items table structures from natural-language descriptions, including lookup references.
@@ -388,7 +383,7 @@ The application uses different Dataverse form types and views to support the use
 | Public view | Default list experience for viewing records |
 | Subgrid | Displays related Requisition Items on the Requisition main form |
 
-The tutorial configures the Departments and Suppliers forms and views, then adjusts the Requisitions form to organize its fields and add a related line-item subgrid.
+The app configures the Departments and Suppliers forms and views, then adjusts the Requisitions form to organize its fields and add a related line-item subgrid.
 
 ### 6.4 Requisition form layout
 
@@ -396,7 +391,7 @@ The Requisitions main form is configured to show the main request information an
 
 The line-item subgrid is configured to display related Requisition Items. This allows users to create and review child records from the parent requisition form.
 
-The tutorial also adjusts the form layout to use available screen space more effectively and reduce unnecessary scrolling.
+The app also adjusts the form layout to use available screen space more effectively and reduce unnecessary scrolling.
 
 ### 6.5 Quick-create configuration
 
@@ -420,7 +415,7 @@ The calculated field is system-derived, so the user does not need to manually en
 
 The parent Requisitions table contains a rollup column for the total amount.
 
-Configuration demonstrated in the tutorial:
+Configuration demonstrated in the app:
 
 1. Create a new column on Requisitions.
 2. Set the data type to Currency.
@@ -435,7 +430,7 @@ Configuration demonstrated in the tutorial:
 
 The Model-Driven App is created from within the solution.
 
-The tutorial adds the Requisitions, Requisition Items, Suppliers and Departments tables to the app, then refines the navigation:
+The app adds the Requisitions, Requisition Items, Suppliers and Departments tables to the app, then refines the navigation:
 
 - Requisitions is moved to the top of the navigation.
 - Requisition Items is removed from the main navigation because users access it through the related subgrid.
@@ -444,7 +439,7 @@ The tutorial adds the Requisitions, Requisition Items, Suppliers and Departments
 
 ### 6.9 Testing the requisition process
 
-The tutorial demonstrates a basic end-to-end test:
+The app demonstrates a basic end-to-end test:
 
 1. Add a department.
 2. Add a supplier.
@@ -463,7 +458,7 @@ The sample scenario uses a stationery request with paper, pens and diaries as se
 
 ## 07. My Contribution
 
-The following is a portfolio-oriented contribution summary based on the application design and implementation steps described in the supplied tutorial. Retain only the activities that accurately reflect your own work.
+The following is a portfolio-oriented contribution summary.
 
 ### Application design and configuration
 
@@ -491,7 +486,7 @@ The following is a portfolio-oriented contribution summary based on the applicat
 
 ### Potential next phase
 
-The tutorial introduces the approval-engine concept but does not implement it. A future phase could include:
+The app introduces the approval-engine concept but does not implement it. A future phase could include:
 
 - Triggering an approval when a requisition is submitted.
 - Resolving the approver based on approval level and configuration.
@@ -505,41 +500,6 @@ These are proposed extensions and should not be represented as completed functio
 
 ---
 
-## 08. Project Files & Resources
-
-### Suggested GitHub repository structure
-
-```text
-Moon-Purchase-Requisition-System/
-│
-├── README.md
-│
-├── PowerApps/
-│   └── Moon-Purchase-Requisition-System/
-│       └── solution-export.zip
-│
-├── Dataverse/
-│   ├── data-dictionary.md
-│   ├── table-relationships.md
-│   └── column-calculations.md
-│
-├── Screenshots/
-│   ├── 01-App-Overview/
-│   ├── 02-Requisitions/
-│   ├── 03-Line-Items/
-│   ├── 04-Master-Data/
-│   └── 05-Calculations/
-│
-├── Architecture/
-│   └── application-architecture.png
-│
-└── Documentation/
-    ├── application-overview.md
-    ├── configuration-guide.md
-    ├── deployment-guide.md
-    └── testing-guide.md
-```
-
 ### Project resources
 
 | Resource | Description |
@@ -552,55 +512,7 @@ Moon-Purchase-Requisition-System/
 | Configuration guide | Steps for configuring forms, views, subgrids and calculations |
 | Testing guide | Requisition creation and calculation validation scenarios |
 
-### Publication checklist
 
-- [ ] Replace tutorial branding and references with Moon branding where applicable.
-- [ ] Remove real names, email addresses, phone numbers and supplier details.
-- [ ] Use fictional or sanitized sample requisition data.
-- [ ] Review screenshots for tenant-specific URLs and confidential information.
-- [ ] Confirm that the solution export contains no secrets or environment-specific sensitive configuration.
-- [ ] Document the solution publisher and custom table prefix.
-- [ ] Validate all Dataverse table relationships.
-- [ ] Validate formula and rollup calculations in the target environment.
-- [ ] Confirm the Model-Driven App navigation and form behavior.
-- [ ] Add Power Automate documentation only after the approval flows are implemented and verified.
-- [ ] Test importing the solution into a clean target environment.
-- [ ] Document any environment variables, connection references or deployment prerequisites if applicable.
-
----
-
-## Scope & Verification Notes
-
-This README is based on the supplied YouTube transcript for the purchase requisition system tutorial and the requested Moon Automation Tracker README structure reference.
-
-### Covered in the supplied tutorial transcript
-
-- Creation of a Dataverse solution.
-- Creation of Departments and Suppliers tables.
-- Creation of Requisitions and Requisition Items tables.
-- Introduction of an independent Approvers table.
-- Configuration of columns, main forms, quick-create forms and public views.
-- Lookup relationships between requisitions, departments, suppliers and requisition items.
-- A related line-item subgrid on the requisition form.
-- A formula column for item-level total-price calculation.
-- A rollup column for requisition-level total amount.
-- Creation and navigation configuration of the Model-Driven App.
-- Basic testing of requisition creation, line-item entry and calculated values.
-
-### Not demonstrated or not confirmed in the supplied transcript
-
-- A completed Power Automate approval flow.
-- Approval and rejection actions or multi-level routing.
-- Automated email notifications.
-- Escalation or delegation logic.
-- A complete security-role and permission matrix.
-- Production deployment and environment configuration.
-- Actual application screenshots or a downloadable solution package.
-- Measured business impact or quantified process improvements.
-
-The README intentionally distinguishes demonstrated functionality from proposed enhancements. Validate the actual solution export and target environment before treating any additional implementation detail as confirmed.
-
----
 
 ## About this project
 
